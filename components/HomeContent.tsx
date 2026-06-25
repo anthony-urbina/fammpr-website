@@ -18,7 +18,7 @@ function formatDate(dateStr: string): string {
 }
 
 export default function HomeContent({ articles }: Props) {
-  const { tr } = useLang();
+  const { tr, lang } = useLang();
   const h = tr.home;
 
   return (
@@ -247,9 +247,11 @@ export default function HomeContent({ articles }: Props) {
                     <span className="text-xs text-fg-muted">{formatDate(article.date)}</span>
                   </div>
                   <h3 className="font-display text-2xl uppercase leading-tight text-fg mb-3 group-hover:text-pr-red transition-colors" style={{ fontWeight: 800 }}>
-                    {article.title}
+                    {(lang === "es" && article.titleEs) ? article.titleEs : article.title}
                   </h3>
-                  <p className="text-sm text-fg-muted leading-relaxed">{article.excerpt}</p>
+                  <p className="text-sm text-fg-muted leading-relaxed">
+                    {(lang === "es" && article.excerptEs) ? article.excerptEs : article.excerpt}
+                  </p>
                   <div className="flex items-center gap-2 mt-6">
                     <span className="text-xs uppercase tracking-widest font-display text-pr-red" style={{ fontWeight: 700 }}>
                       {h.news_read_more}

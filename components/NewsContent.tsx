@@ -18,7 +18,7 @@ function formatDate(dateStr: string): string {
 }
 
 export default function NewsContent({ articles }: Props) {
-  const { tr } = useLang();
+  const { tr, lang } = useLang();
   const n = tr.news;
 
   return (
@@ -71,7 +71,7 @@ export default function NewsContent({ articles }: Props) {
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-3 mb-3">
                     <span className="text-xs uppercase tracking-widest font-display text-pr-red" style={{ fontWeight: 700, letterSpacing: "0.15em" }}>
-                      {article.category}
+                      {(lang === "es" && article.categoryEs) ? article.categoryEs : article.category}
                     </span>
                     <span className="text-border">·</span>
                     <span className="text-xs text-fg-muted">{formatDate(article.date)}</span>
@@ -86,9 +86,11 @@ export default function NewsContent({ articles }: Props) {
                     className="font-display text-[clamp(1.4rem,3vw,2rem)] uppercase leading-tight text-fg mb-2 group-hover:text-pr-red transition-colors"
                     style={{ fontWeight: 800 }}
                   >
-                    {article.title}
+                    {(lang === "es" && article.titleEs) ? article.titleEs : article.title}
                   </h2>
-                  <p className="text-sm text-fg-muted leading-relaxed max-w-2xl">{article.excerpt}</p>
+                  <p className="text-sm text-fg-muted leading-relaxed max-w-2xl">
+                    {(lang === "es" && article.excerptEs) ? article.excerptEs : article.excerpt}
+                  </p>
                 </div>
 
                 <div className="flex items-center justify-end sm:pt-2 shrink-0">

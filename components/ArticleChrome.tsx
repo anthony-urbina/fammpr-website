@@ -3,27 +3,31 @@
 import Link from "next/link";
 import { useLang } from "@/contexts/LanguageContext";
 
-interface Props {
+interface HeaderProps {
   category: string;
+  categoryEs?: string;
   date: string;
   author?: string;
   title: string;
+  titleEs?: string;
   excerpt: string;
+  excerptEs?: string;
 }
 
-export function ArticleHeader({ category, date, author, title, excerpt }: Props) {
-  const { tr } = useLang();
+export function ArticleHeader({
+  category, categoryEs, date, author,
+  title, titleEs, excerpt, excerptEs,
+}: HeaderProps) {
+  const { tr, lang } = useLang();
   const a = tr.article;
+  const isEs = lang === "es";
 
   return (
     <div
       className="relative pt-32 pb-12 overflow-hidden"
       style={{ background: "var(--color-surface)" }}
     >
-      <div
-        className="absolute left-0 top-0 bottom-0 w-1"
-        style={{ background: "var(--color-pr-red)" }}
-      />
+      <div className="absolute left-0 top-0 bottom-0 w-1" style={{ background: "var(--color-pr-red)" }} />
       <div
         className="absolute inset-0 opacity-4"
         style={{
@@ -51,7 +55,7 @@ export function ArticleHeader({ category, date, author, title, excerpt }: Props)
             className="text-xs uppercase tracking-widest font-display text-pr-red"
             style={{ fontWeight: 700, letterSpacing: "0.15em" }}
           >
-            {category}
+            {(isEs && categoryEs) ? categoryEs : category}
           </span>
           <span style={{ color: "var(--color-border)" }}>·</span>
           <span className="text-xs text-fg-muted">{date}</span>
@@ -67,11 +71,11 @@ export function ArticleHeader({ category, date, author, title, excerpt }: Props)
           className="font-display text-[clamp(2.5rem,6vw,4.5rem)] uppercase leading-tight text-fg mb-6"
           style={{ fontWeight: 900 }}
         >
-          {title}
+          {(isEs && titleEs) ? titleEs : title}
         </h1>
 
         <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "#7A93B5" }}>
-          {excerpt}
+          {(isEs && excerptEs) ? excerptEs : excerpt}
         </p>
 
         <div className="mt-8 w-16 h-0.5" style={{ background: "var(--color-pr-red)" }} />
@@ -88,10 +92,7 @@ export function ArticleFooter() {
     <>
       <div
         className="mt-16 p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
-        style={{
-          background: "var(--color-surface)",
-          borderTop: "3px solid var(--color-pr-red)",
-        }}
+        style={{ background: "var(--color-surface)", borderTop: "3px solid var(--color-pr-red)" }}
       >
         <div>
           <p className="font-display text-lg uppercase text-fg mb-1" style={{ fontWeight: 800 }}>
