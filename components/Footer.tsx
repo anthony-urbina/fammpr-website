@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/contexts/LanguageContext";
 
 export default function Footer() {
@@ -23,10 +24,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div
-                className="w-6 h-6 pr-star"
-                style={{ background: "var(--color-pr-red)" }}
+            <div className="flex items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="FAMMPR Logo"
+                width={40}
+                height={40}
+                className="object-contain"
               />
               <span
                 className="font-display text-xl text-fg"

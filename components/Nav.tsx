@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useLang } from "@/contexts/LanguageContext";
@@ -28,10 +29,14 @@ export default function Nav() {
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div
-            className="relative w-8 h-8 pr-star"
-            style={{ background: "var(--color-pr-red)" }}
+        <Link href="/" className="flex items-center gap-2 group">
+          <Image
+            src="/logo.png"
+            alt="FAMMPR Logo"
+            width={44}
+            height={44}
+            className="object-contain"
+            priority
           />
           <span
             className="font-display text-2xl tracking-widest uppercase text-fg group-hover:text-pr-red transition-colors"
