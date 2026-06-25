@@ -3,6 +3,7 @@ import { Barlow_Condensed, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const barlow = Barlow_Condensed({
   variable: "--font-barlow",
@@ -38,9 +39,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${barlow.variable} ${ibmPlex.variable}`}>
       <body className="min-h-screen flex flex-col bg-bg text-fg font-body antialiased">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Nav />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
