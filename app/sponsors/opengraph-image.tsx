@@ -40,12 +40,12 @@ export default async function Image() {
         {/* Red left bar */}
         <div style={{ position: "absolute", left: 0, top: 0, width: 8, height: "100%", background: "#EF3340" }} />
 
-        {/* Logo */}
+        {/* Logo — centered above bottom bar: (630 - 60 - 260) / 2 = 155 */}
         <img
           src={logo}
           width={260}
           height={260}
-          style={{ position: "absolute", right: 72, top: "50%", transform: "translateY(-50%)", opacity: 0.95 }}
+          style={{ position: "absolute", right: 72, top: 155, opacity: 0.95 }}
         />
 
         {/* Content */}

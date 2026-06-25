@@ -43,12 +43,12 @@ export default async function Image() {
           }}
         />
 
-        {/* Logo — right side */}
+        {/* Logo — right side, centered above bottom bar: (630 - 64 - 280) / 2 = 143 */}
         <img
           src={logo}
           width={280}
           height={280}
-          style={{ position: "absolute", right: 60, top: "50%", transform: "translateY(-50%)", opacity: 0.95 }}
+          style={{ position: "absolute", right: 60, top: 143, opacity: 0.95 }}
         />
 
         {/* Content — left side */}
