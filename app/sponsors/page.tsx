@@ -76,21 +76,23 @@ export default function SponsorsPage() {
           </span>
         </div>
 
-        <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'>
+        <div className='flex flex-wrap justify-center gap-4'>
           {currentSponsors.map((sponsor) => (
             <div
               key={sponsor.name}
-              className='aspect-video flex flex-col items-center justify-center gap-2 p-6'
+              className='flex flex-col items-center justify-center gap-2 p-6'
               style={{
                 background: "var(--color-surface)",
                 border: "1px solid var(--color-border)",
+                width: "240px",
+                height: "140px",
               }}
             >
               <Image
                 src={sponsor.logo}
                 alt={sponsor.name}
                 width={180}
-                height={90}
+                height={72}
                 className='max-h-16 w-auto object-contain'
               />
               <span
@@ -98,23 +100,6 @@ export default function SponsorsPage() {
                 style={{ fontWeight: 700, letterSpacing: "0.12em" }}
               >
                 {sponsor.name}
-              </span>
-            </div>
-          ))}
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className='aspect-video flex items-center justify-center'
-              style={{
-                background: "var(--color-surface)",
-                border: "1px dashed var(--color-border)",
-              }}
-            >
-              <span
-                className='font-display text-xs uppercase tracking-widest text-fg-muted opacity-40'
-                style={{ fontWeight: 600, letterSpacing: "0.12em" }}
-              >
-                {s.placeholder}
               </span>
             </div>
           ))}
