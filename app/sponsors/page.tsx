@@ -76,7 +76,7 @@ export default function SponsorsPage() {
           </span>
         </div>
 
-        <div className='flex flex-wrap justify-center gap-4'>
+        <div className='flex flex-wrap gap-4'>
           {currentSponsors.map((sponsor) => (
             <div
               key={sponsor.name}
