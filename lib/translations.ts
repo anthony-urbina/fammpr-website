@@ -15,8 +15,9 @@ export interface Translations {
   sponsors: {
     eyebrow: string; heading: string; subheading: string; current_eyebrow: string; placeholder: string;
     cta_secure: string; filling: string; banner: string; banner_sub: string;
-    packages_eyebrow: string; packages_heading: string; exclusive_badge: string; get_started: string;
+    packages_eyebrow: string; packages_heading: string; exclusive_badge: string; get_started: string; unavailable: string;
     ready_heading: string; ready_sub: string; email_btn: string; call: string;
+    badges: { presenting: string; bronze: string; silver: string; gold: string };
     packages: { tier: string; price: string; ideal: string }[];
     perks: string[][];
   };
@@ -99,11 +100,13 @@ export const t: Record<Lang, Translations> = {
       packages_heading: "Choose Your Level",
       exclusive_badge: "1 Spot Only",
       get_started: "Get Started",
+      unavailable: "Unavailable",
+      badges: { presenting: "Presenting Sponsor", bronze: "Bronze Sponsor", silver: "Silver Sponsor", gold: "Gold Sponsor" },
       ready_heading: "Ready to become an official partner?",
       ready_sub:
         "Reach out and we'll find the right package for your business. Limited spots available.",
       email_btn: "Email Us",
-      call: "or call (939) 238-5257",
+      call: "or WhatsApp (939) 238-5257",
       packages: [
         {
           tier: "Bronze",
@@ -237,11 +240,13 @@ export const t: Record<Lang, Translations> = {
       packages_heading: "Elige Tu Nivel",
       exclusive_badge: "1 Espacio",
       get_started: "Comenzar",
+      unavailable: "No Disponible",
+      badges: { presenting: "Patrocinador Presentador", bronze: "Patrocinador Bronce", silver: "Patrocinador Plata", gold: "Patrocinador Oro" },
       ready_heading: "¿Listo para ser socio oficial?",
       ready_sub:
         "Contáctanos y encontraremos el paquete adecuado para tu negocio. Espacios limitados.",
       email_btn: "Escríbenos",
-      call: "o llama al (939) 238-5257",
+      call: "o WhatsApp (939) 238-5257",
       packages: [
         {
           tier: "Bronce",

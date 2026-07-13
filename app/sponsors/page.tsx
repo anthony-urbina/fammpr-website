@@ -5,8 +5,24 @@ import Link from "next/link";
 import { useLang } from "@/contexts/LanguageContext";
 
 const currentSponsors = [
-  { name: "Healing Hands Chiropractic", logo: "/sponsor-healing-hand.svg", badge: "Presenting Sponsor", badgeColor: "#EF3340" },
-  { name: "AutomationKit", logo: "/sponsor-automationkit.png", badge: "Bronze Sponsor", badgeColor: "#CD7F32" },
+  {
+    name: "Healing Hands Chiropractic",
+    logo: "/sponsor-healing-hand.svg",
+    badgeKey: "presenting" as const,
+    badgeColor: "#EF3340",
+    description: "Discover wellness with personalized treatments that relieve pain, improve your mobility and transform your health: chiropractic adjustments, therapeutic massages and advanced therapies such as the Erchonia laser. Located in Moca, PR.",
+    website: "https://www.healinghandschiropracticpr.com/",
+    websiteLabel: "healinghandschiropracticpr.com",
+  },
+  {
+    name: "AutomationKit",
+    logo: "/sponsor-automationkit.png",
+    badgeKey: "bronze" as const,
+    badgeColor: "#CD7F32",
+    description: "We help life insurance agents turn real-time leads into booked appointments using automated follow-up and AI scheduling. Our system plugs into their existing lead flow to recover leads that would've gone cold and generate consistent opportunities without manual effort.",
+    website: "https://automationkit.ai",
+    websiteLabel: "automationkit.ai",
+  },
 ];
 
 const packageColors = ["#CD7F32", "#7A7A7A", "#D4AF37", "#EF3340"];
@@ -76,38 +92,47 @@ export default function SponsorsPage() {
           </span>
         </div>
 
-        <div className='flex flex-wrap gap-4'>
+        <div className='flex flex-wrap gap-6'>
           {currentSponsors.map((sponsor) => (
             <div
               key={sponsor.name}
-              className='relative flex flex-col items-center justify-center gap-2 p-6 w-full sm:w-[240px]'
+              className='relative flex flex-col gap-4 p-6 w-full sm:w-[300px]'
               style={{
                 background: "var(--color-surface)",
-                border: `1px solid ${sponsor.badge ? sponsor.badgeColor + "66" : "var(--color-border)"}`,
-                minHeight: "140px",
+                border: `1px solid ${sponsor.badgeColor + "66"}`,
               }}
             >
-              {sponsor.badge && (
-                <div
-                  className='absolute -top-3 left-4 px-3 py-0.5 text-white text-xs font-display uppercase tracking-widest'
-                  style={{ background: sponsor.badgeColor!, fontWeight: 700, letterSpacing: "0.1em" }}
-                >
-                  {sponsor.badge}
-                </div>
-              )}
-              <Image
-                src={sponsor.logo}
-                alt={sponsor.name}
-                width={180}
-                height={72}
-                className='max-h-16 w-auto object-contain'
-              />
-              <span
-                className='font-display text-xs uppercase tracking-widest text-fg-muted'
-                style={{ fontWeight: 700, letterSpacing: "0.12em" }}
+              <div
+                className='absolute -top-3 left-4 px-3 py-0.5 text-white text-xs font-display uppercase tracking-widest'
+                style={{ background: sponsor.badgeColor, fontWeight: 700, letterSpacing: "0.1em" }}
               >
-                {sponsor.name}
-              </span>
+                {s.badges[sponsor.badgeKey]}
+              </div>
+              <div className='flex flex-col items-center gap-2 pt-2'>
+                <Image
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  width={180}
+                  height={72}
+                  className='max-h-16 w-auto object-contain'
+                />
+                <span
+                  className='font-display text-xs uppercase tracking-widest text-fg-muted'
+                  style={{ fontWeight: 700, letterSpacing: "0.12em" }}
+                >
+                  {sponsor.name}
+                </span>
+              </div>
+              <p className='text-sm text-fg-muted leading-relaxed'>{sponsor.description}</p>
+              <a
+                href={sponsor.website}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-xs underline underline-offset-2 hover:text-fg transition-colors'
+                style={{ color: "var(--color-pr-red)" }}
+              >
+                {sponsor.websiteLabel}
+              </a>
             </div>
           ))}
         </div>
@@ -256,7 +281,7 @@ export default function SponsorsPage() {
                     letterSpacing: "0.1em",
                   }}
                 >
-                  {exclusive ? "Unavailable" : s.get_started}
+                  {exclusive ? s.unavailable : s.get_started}
                 </a>
               </div>
             );
@@ -288,7 +313,9 @@ export default function SponsorsPage() {
               {s.email_btn}
             </a>
             <a
-              href='tel:+19392385257'
+              href='https://wa.me/19392385257'
+              target='_blank'
+              rel='noopener noreferrer'
               className='text-xs text-center text-fg-muted hover:text-fg transition-colors'
             >
               {s.call}
