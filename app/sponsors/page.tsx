@@ -5,8 +5,8 @@ import Link from "next/link";
 import { useLang } from "@/contexts/LanguageContext";
 
 const currentSponsors = [
-  { name: "Healing Hands Chiropractic", logo: "/sponsor-healing-hand.svg" },
-  { name: "AutomationKit", logo: "/sponsor-automationkit.png" },
+  { name: "Healing Hands Chiropractic", logo: "/sponsor-healing-hand.svg", badge: "Presenting Sponsor", badgeColor: "#EF3340" },
+  { name: "AutomationKit", logo: "/sponsor-automationkit.png", badge: "Bronze Sponsor", badgeColor: "#CD7F32" },
 ];
 
 const packageColors = ["#CD7F32", "#7A7A7A", "#D4AF37", "#EF3340"];
@@ -80,14 +80,21 @@ export default function SponsorsPage() {
           {currentSponsors.map((sponsor) => (
             <div
               key={sponsor.name}
-              className='flex flex-col items-center justify-center gap-2 p-6'
+              className='relative flex flex-col items-center justify-center gap-2 p-6 w-full sm:w-[240px]'
               style={{
                 background: "var(--color-surface)",
-                border: "1px solid var(--color-border)",
-                width: "240px",
-                height: "140px",
+                border: `1px solid ${sponsor.badge ? sponsor.badgeColor + "66" : "var(--color-border)"}`,
+                minHeight: "140px",
               }}
             >
+              {sponsor.badge && (
+                <div
+                  className='absolute -top-3 left-4 px-3 py-0.5 text-white text-xs font-display uppercase tracking-widest'
+                  style={{ background: sponsor.badgeColor!, fontWeight: 700, letterSpacing: "0.1em" }}
+                >
+                  {sponsor.badge}
+                </div>
+              )}
               <Image
                 src={sponsor.logo}
                 alt={sponsor.name}
@@ -186,14 +193,16 @@ export default function SponsorsPage() {
                   background: featured ? "var(--color-surface-2)" : "var(--color-surface)",
                   border: `1px solid ${featured ? color + "44" : "var(--color-border)"}`,
                   borderTop: `3px solid ${color}`,
+                  opacity: exclusive ? 0.5 : 1,
+                  pointerEvents: exclusive ? "none" : "auto",
                 }}
               >
                 {exclusive && (
                   <div
                     className='absolute -top-3 right-4 px-3 py-0.5 text-white text-xs font-display uppercase tracking-widest'
-                    style={{ background: "var(--color-pr-red)", fontWeight: 700, letterSpacing: "0.1em" }}
+                    style={{ background: "var(--color-border)", fontWeight: 700, letterSpacing: "0.1em" }}
                   >
-                    {s.exclusive_badge}
+                    CLAIMED
                   </div>
                 )}
 
@@ -237,17 +246,17 @@ export default function SponsorsPage() {
                 </ul>
 
                 <a
-                  href='mailto:federacionmmapr@gmail.com?subject=Sponsorship Inquiry — FAMMPR'
-                  className='block text-center py-2.5 text-sm uppercase tracking-widest font-display transition-all hover:opacity-90'
+                  href={exclusive ? undefined : 'mailto:federacionmmapr@gmail.com?subject=Sponsorship Inquiry — FAMMPR'}
+                  className='block text-center py-2.5 text-sm uppercase tracking-widest font-display'
                   style={{
-                    background: exclusive ? "var(--color-pr-red)" : "transparent",
-                    color: exclusive ? "#fff" : color,
-                    border: `1px solid ${color}`,
+                    background: exclusive ? "var(--color-border)" : "transparent",
+                    color: exclusive ? "var(--color-fg-muted)" : color,
+                    border: `1px solid ${exclusive ? "var(--color-border)" : color}`,
                     fontWeight: 700,
                     letterSpacing: "0.1em",
                   }}
                 >
-                  {s.get_started}
+                  {exclusive ? "Unavailable" : s.get_started}
                 </a>
               </div>
             );
